@@ -12,25 +12,23 @@ const TeacherLand = () => {
     courses: [],
   });
 
+  const fetchTeacherData = async () => {
+    try {
+      const response = await axios.get(
+        `https://lmsdatabase.onrender.com/getTeacherData/${teacherId}`
+      );
+      setTeacherName(response.data.name);
+      setTeacherData({
+        name: response.data.name,
+        courses: response.data.courses,
+      });
+      console.log('Teacher Courses:', response.data.courses);
+    } catch (error) {
+      console.error("Error fetching teacher data", error);
+    }
+  };
+
   useEffect(() => {
-    const fetchTeacherData = async () => {
-      try {
-        const response = await axios.get(
-          `https://lmsdatabase.onrender.com/getTeacherData/${teacherId}`
-        );
-        setTeacherName(response.data.name);
-        setTeacherData({
-          name: response.data.name,
-          courses: response.data.courses,
-        });
-
-        console.log('Teacher Courses:', response.data.courses);
-        
-      } catch (error) {
-        console.error("Error fetching teacher data", error);
-      }
-    };
-
     fetchTeacherData();
   }, [teacherId]);
 
@@ -57,9 +55,8 @@ const TeacherLand = () => {
       await axios.delete(`https://lmsdatabase.onrender.com/deleteCourse/${teacherId}/${courseId}`);
       // After successful deletion, show success toast
       toast.success("Course deleted successfully");
-      // You might want to update the state or reload the courses
-      // For simplicity, let's reload the entire teacher data
-      setTeacherData();
+      // Reload the teacher data after deletion
+      fetchTeacherData(); // Fetch updated teacher data
     } catch (error) {
       // If deletion fails, show an error toast
       toast.error("Error deleting course");
