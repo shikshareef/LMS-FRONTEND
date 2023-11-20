@@ -59,7 +59,7 @@ const TeacherLand = () => {
       toast.success("Course deleted successfully");
       // You might want to update the state or reload the courses
       // For simplicity, let's reload the entire teacher data
-      fetchTeacherData();
+      setTeacherData();
     } catch (error) {
       // If deletion fails, show an error toast
       toast.error("Error deleting course");
