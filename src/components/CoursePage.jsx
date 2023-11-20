@@ -13,7 +13,7 @@ function CoursePage() {
 
   const handleAddVideoToCourse = async () => {
     try {
-      const response = await axios.post(`https://lmsdatabase.onrender.com/${courseId}`, videoDetails);
+      const response = await axios.post(`https://lmsdatabase.onrender.com/addvideo/${courseId}`, videoDetails);
       console.log('Video added to course:', response.data);
       toast.success('Video added successfully!');
     } catch (error) {
