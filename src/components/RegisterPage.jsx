@@ -34,7 +34,7 @@ const RegisterPage = () => {
           password: studentpass,
         };
       
-        axios.post("http://localhost:5000/student_add", data)
+        axios.post("https://lmsdatabase.onrender.com/student_add", data)
           .then((res) => {
             if (res.status === 201) {
             } else {
