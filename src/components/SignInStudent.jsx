@@ -11,6 +11,8 @@ const SignInStudent = () => {
     e.preventDefault();
 
     try {
+      console.log(email);
+      console.log(password):
       const response = await axios.post('https://lmsdatabase.onrender.com/student_login', {
         email,
         password,
