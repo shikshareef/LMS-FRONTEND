@@ -12,7 +12,7 @@ const SignInStudent = () => {
 
     try {
       console.log(email);
-      console.log(password):
+      console.log(password);
       const response = await axios.post('https://lmsdatabase.onrender.com/student_login', {
         email,
         password,
